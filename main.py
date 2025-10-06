@@ -34,13 +34,20 @@ def main():
         higher_number = isnumber("Enter the high number: ")
 
     random_number = randint(lower_number, higher_number)
-    number_of_guesses = 7
+    number_of_guesses = 10
     guess_count = 0
     guesses = []
 
     while guess_count < number_of_guesses:
         os.system('cls' if os.name == 'nt' else 'clear')
         smaller, bigger = small_big(guesses, random_number)
+        current_guess = None
+        too_low = False
+
+        if too_low:
+            print(f"{guess} was too low")
+        elif not too_low and guess_count != 0:
+            print(f"{guess} was too high")
 
         print(f"You have {number_of_guesses - guess_count} guesses left!")
         print(f"Smaller: {', '.join(map(str, sorted(smaller)))}")
@@ -51,9 +58,13 @@ def main():
             print("Success! You found the random number!")
             break
         if guess < random_number:
-            print("Too Low")
+            too_low = True
+            current_guess = guess
+            lower_number = guess
         if guess > random_number:
-            print("Too high")
+            too_low = False
+            current_guess = guess
+            higher_number = guess
         guess_count += 1
 
 if __name__ == "__main__":
