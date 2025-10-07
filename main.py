@@ -64,7 +64,7 @@ def main():
             higher_number = guess - 1
         guess_count += 1
 
-    print("Game over, better luck next time!")
+    print(f"Game over, the number was {random_number}. Better luck next time!")
 
 if __name__ == "__main__":
     main()
